@@ -50,6 +50,6 @@ class Text(object):
         pygame.font.init()
         self.font = pygame.font.SysFont("arial", 24)
         self.text = self.font.render(text, True, WHITE)
-        self.text_rect = self.text.get_rect()
-        self.text_rect.centerx = SCREEN_RECT.centerx
-        self.text_rect.y = 10
+        self.rect = self.text.get_rect()
+        self.rect.centerx = SCREEN_RECT.centerx
+        self.rect.y = 10

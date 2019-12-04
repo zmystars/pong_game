@@ -40,7 +40,7 @@ class PongGame(object):
             if self.lives > 0 and len(self.ball_group) == 0:
                 self.__create_a_ball()
                 self.lives -= 1
-            if self.lives == 0 and len(self.ball_group) == 0:
+            elif self.lives == 0 and len(self.ball_group) == 0:
                 self.__one_game_finished()
             else:
                 self.__show_score_board()
@@ -80,7 +80,7 @@ class PongGame(object):
         self.ball_group.draw(self.screen)
 
         self.score_board = Text(self.draw_string)
-        self.screen.blit(self.score_board.text, self.score_board.text_rect)
+        self.screen.blit(self.score_board.text, self.score_board.rect)
 
     def __show_score_board(self):
         self.draw_string = "Points:" + str(self.points) + " Lives:" + str(self.lives)
