@@ -11,7 +11,7 @@ class PongGame(object):
         self.speed_x = 5
         self.speed_y = 5
         self.score_board = None
-        self.scores = None
+        self.result_board = None
         self.ball = None
         self.draw_string = ""
 
@@ -79,15 +79,17 @@ class PongGame(object):
         self.ball_group.update()
         self.ball_group.draw(self.screen)
 
-        self.score_board = Text(self.draw_string)
-        self.screen.blit(self.score_board.text, self.score_board.rect)
-
     def __show_score_board(self):
         self.draw_string = "Points:" + str(self.points) + " Lives:" + str(self.lives)
+        self.score_board = Text(self.draw_string)
+        self.screen.blit(self.score_board.text, self.score_board.rect)
 
     def __one_game_finished(self):
         self.draw_string = "Game Over. Your scores was: " + str(self.points)
         self.draw_string += ". Press F1 to play again. "
+        self.result_board = Text(self.draw_string, 30)
+        self.result_board.rect.y = SCREEN_RECT.height / 2
+        self.screen.blit(self.result_board.text, self.result_board.rect)
 
     @staticmethod
     def game_over():

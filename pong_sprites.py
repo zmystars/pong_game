@@ -46,9 +46,9 @@ class Ball(pygame.sprite.Sprite):
 
 
 class Text(object):
-    def __init__(self, text):
+    def __init__(self, text, size=24):
         pygame.font.init()
-        self.font = pygame.font.SysFont("arial", 24)
+        self.font = pygame.font.SysFont("arial", size)
         self.text = self.font.render(text, True, WHITE)
         self.rect = self.text.get_rect()
         self.rect.centerx = SCREEN_RECT.centerx
