@@ -27,7 +27,15 @@ class PongGame(object):
         self.plank_group = pygame.sprite.Group(self.plank)
         
         self.ball_group = pygame.sprite.Group()
-        
+
+        self.brick_group = pygame.sprite.Group()
+        for i in range(10):
+            for j in range(10):
+                self.brick = Brick()
+                self.brick.rect.x = i * BRICK_RECT[0]
+                self.brick.rect.y = j * BRICK_RECT[1]
+                self.brick_group.add(self.brick)
+
     def __create_a_ball(self):
         """创建一个球"""
         self.ball = Ball(self.speed_x, self.speed_y)
@@ -59,9 +67,7 @@ class PongGame(object):
                 PongGame.game_over()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_F1:
-                    self.__create_a_ball()
-                    self.lives = 3
-                    self.points = 0
+                    self.__init__()
 
         # 使用鼠标控制平板位置
         self.plank.rect.centerx = pygame.mouse.get_pos()[0]
@@ -82,8 +88,9 @@ class PongGame(object):
         catch = pygame.sprite.spritecollide(self.plank, self.ball_group, False)
         if len(catch) > 0:
             self.ball.y_vel = -self.ball.y_vel
-            self.points += 1
-            # self.__create_a_ball()
+
+        if pygame.sprite.groupcollide(self.ball_group, self.brick_group, False, True):
+            self.ball.y_vel = -self.ball.y_vel
 
     def __update_sprites(self):
         """更新显示"""
@@ -95,14 +102,19 @@ class PongGame(object):
         self.ball_group.update()
         self.ball_group.draw(self.screen)
 
+        self.brick_group.update()
+        self.brick_group.draw(self.screen)
+
     def __show_score_board(self):
         """绘制记分板"""
+        self.points = 100 - len(self.brick_group)
         self.draw_string = "Points:" + str(self.points) + " Lives:" + str(self.lives)
         self.score_board = Text(self.draw_string)
         self.screen.blit(self.score_board.text, self.score_board.rect)
 
     def __one_game_finished(self):
         """一局游戏结束，显示得分"""
+        self.points = 100 - len(self.brick_group)
         self.draw_string = "Game Over. Your scores was: " + str(self.points)
         self.draw_string += ". Press F1 to play again. "
         self.result_board = Text(self.draw_string, 30)

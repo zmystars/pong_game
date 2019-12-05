@@ -5,7 +5,8 @@ FRAME_PER_SEC = 60
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 PLANK_RECT = (200, 10)
-BALL_RECT = (80, 80)
+BALL_RECT = (50, 50)
+BRICK_RECT = (80, 15)
 
 
 class PlankSprites(pygame.sprite.Sprite):
@@ -47,6 +48,15 @@ class Ball(pygame.sprite.Sprite):
             self.y_vel = -self.y_vel
         if self.rect.y >= SCREEN_RECT.bottom:
             self.kill()
+
+
+class Brick(pygame.sprite.Sprite):
+    """砖块精灵"""
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.image.load("./brick.png")
+        self.image = pygame.transform.scale(self.image, BRICK_RECT)
+        self.rect = self.image.get_rect()
 
 
 class Text(object):
