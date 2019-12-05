@@ -1,4 +1,3 @@
-from random import randint
 import pygame
 from pong_sprites import *
 
@@ -29,18 +28,18 @@ class PongGame(object):
         self.ball_group = pygame.sprite.Group()
 
         self.brick_group = pygame.sprite.Group()
-        for i in range(10):
-            for j in range(10):
+        for i in range(BRICK_SCALE[0]):
+            for j in range(BRICK_SCALE[1]):
                 self.brick = Brick()
-                self.brick.rect.x = i * BRICK_RECT[0]
-                self.brick.rect.y = j * BRICK_RECT[1]
+                self.brick.rect.x = i * BRICK_SIZE[0]
+                self.brick.rect.y = j * BRICK_SIZE[1]
                 self.brick_group.add(self.brick)
 
     def __create_a_ball(self):
         """创建一个球"""
         self.ball = Ball(self.speed_x, self.speed_y)
         self.ball.rect.centerx = self.plank.rect.centerx
-        self.ball.rect.bottom = self.plank.rect.top - 20
+        self.ball.rect.bottom = self.plank.rect.top - 10
         self.ball_group.add(self.ball)
 
     def start_game(self):
@@ -94,7 +93,7 @@ class PongGame(object):
 
     def __update_sprites(self):
         """更新显示"""
-        self.screen.fill(BLACK) # 清屏
+        self.screen.fill(BLACK)  # 清屏
 
         self.plank_group.update()
         self.plank_group.draw(self.screen)
@@ -107,14 +106,14 @@ class PongGame(object):
 
     def __show_score_board(self):
         """绘制记分板"""
-        self.points = 100 - len(self.brick_group)
+        self.points = BRICK_SCALE[0] * BRICK_SCALE[1] - len(self.brick_group)
         self.draw_string = "Points:" + str(self.points) + " Lives:" + str(self.lives)
         self.score_board = Text(self.draw_string)
         self.screen.blit(self.score_board.text, self.score_board.rect)
 
     def __one_game_finished(self):
         """一局游戏结束，显示得分"""
-        self.points = 100 - len(self.brick_group)
+        self.points = BRICK_SCALE[0] * BRICK_SCALE[1] - len(self.brick_group)
         self.draw_string = "Game Over. Your scores was: " + str(self.points)
         self.draw_string += ". Press F1 to play again. "
         self.result_board = Text(self.draw_string, 30)
