@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d695cf2-6e20-45f3-89b0-ec889030d67a" name="Default Changelist" comment="改名字">
-      <change afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pong_sprites.py" beforeDir="false" afterPath="$PROJECT_DIR$/pong_sprites.py" afterDir="false" />
     </list>

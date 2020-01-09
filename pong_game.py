@@ -87,11 +87,13 @@ class PongGame(object):
 
     def __check_collide(self):
         """碰撞检测"""
-        catch = pygame.sprite.spritecollide(self.plank, self.ball_group, False)
+        # 平板接球
+        catch = pygame.sprite.spritecollide(self.plank, self.ball_group, False, pygame.sprite.collide_mask)
         if len(catch) > 0:
             self.ball.y_vel = -self.ball.y_vel
 
-        if pygame.sprite.groupcollide(self.ball_group, self.brick_group, False, True):
+        # 球碰撞砖块
+        if pygame.sprite.groupcollide(self.ball_group, self.brick_group, False, True, pygame.sprite.collide_mask):
             self.ball.y_vel = -self.ball.y_vel
 
     def __update_sprites(self):

@@ -6,12 +6,13 @@ class PlankSprites(pygame.sprite.Sprite):
     """平板精灵"""
     def __init__(self, vel=0):
         super().__init__()
-        self.image = pygame.image.load("./plank.png")
+        self.image = pygame.image.load("./plank.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, Setting.PLANK_SIZE)
         self.rect = self.image.get_rect()
         self.rect.centerx = Setting.SCREEN_RECT.centerx
         self.rect.bottom = Setting.SCREEN_RECT.bottom - 10
         self.vel = vel
+        self.mask = pygame.mask.from_surface(self.image)
 
     def update(self):
         self.rect.x += self.vel
@@ -25,11 +26,12 @@ class Ball(pygame.sprite.Sprite):
     """球精灵"""
     def __init__(self, x_vel=0, y_vel=0):
         super().__init__()
-        self.image = pygame.image.load("./ball.png")
+        self.image = pygame.image.load("./ball.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, Setting.BALL_SIZE)
         self.rect = self.image.get_rect()
         self.x_vel = x_vel
         self.y_vel = y_vel
+        self.mask = pygame.mask.from_surface(self.image)
 
     def update(self):
         self.rect.x += self.x_vel
@@ -47,9 +49,10 @@ class Brick(pygame.sprite.Sprite):
     """砖块精灵"""
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("./brick.png")
+        self.image = pygame.image.load("./brick.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, Setting.BRICK_SIZE)
         self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
 
 
 class Text(object):
