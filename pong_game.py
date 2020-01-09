@@ -1,4 +1,5 @@
 import pygame
+from config import *
 from pong_sprites import *
 
 
@@ -15,7 +16,7 @@ class PongGame(object):
         self.ball = None
         self.draw_string = ""
 
-        self.screen = pygame.display.set_mode(SCREEN_RECT.size)
+        self.screen = pygame.display.set_mode(Setting.SCREEN_RECT.size)
         pygame.display.set_caption("PongGame")
         self.clock = pygame.time.Clock()
         self.__create_sprites()
@@ -28,11 +29,13 @@ class PongGame(object):
         self.ball_group = pygame.sprite.Group()
 
         self.brick_group = pygame.sprite.Group()
-        for i in range(BRICK_SCALE[0]):
-            for j in range(BRICK_SCALE[1]):
+
+        # 排列砖块位置
+        for i in range(Setting.BRICK_SCALE[0]):
+            for j in range(Setting.BRICK_SCALE[1]):
                 self.brick = Brick()
-                self.brick.rect.x = i * BRICK_SIZE[0]
-                self.brick.rect.y = j * BRICK_SIZE[1]
+                self.brick.rect.x = i * Setting.BRICK_SIZE[0]
+                self.brick.rect.y = j * Setting.BRICK_SIZE[1]
                 self.brick_group.add(self.brick)
 
     def __create_a_ball(self):
@@ -46,7 +49,7 @@ class PongGame(object):
         """游戏循环"""
         print("游戏开始...")
         while self.keep_going:
-            self.clock.tick(FRAME_PER_SEC)
+            self.clock.tick(Setting.FRAME_PER_SEC)
             self.__event_handler()
             self.__check_collide()
             self.__update_sprites()
@@ -93,7 +96,7 @@ class PongGame(object):
 
     def __update_sprites(self):
         """更新显示"""
-        self.screen.fill(BLACK)  # 清屏
+        self.screen.fill(Setting.BLACK)  # 清屏
 
         self.plank_group.update()
         self.plank_group.draw(self.screen)
@@ -106,18 +109,18 @@ class PongGame(object):
 
     def __show_score_board(self):
         """绘制记分板"""
-        self.points = BRICK_SCALE[0] * BRICK_SCALE[1] - len(self.brick_group)
+        self.points = Setting.BRICK_SCALE[0] * Setting.BRICK_SCALE[1] - len(self.brick_group)
         self.draw_string = "Points:" + str(self.points) + " Lives:" + str(self.lives)
         self.score_board = Text(self.draw_string)
         self.screen.blit(self.score_board.text, self.score_board.rect)
 
     def __one_game_finished(self):
         """一局游戏结束，显示得分"""
-        self.points = BRICK_SCALE[0] * BRICK_SCALE[1] - len(self.brick_group)
+        self.points = Setting.BRICK_SCALE[0] * Setting.BRICK_SCALE[1] - len(self.brick_group)
         self.draw_string = "Game Over. Your scores was: " + str(self.points)
         self.draw_string += ". Press F1 to play again. "
         self.result_board = Text(self.draw_string, 30)
-        self.result_board.rect.centery = SCREEN_RECT.centery
+        self.result_board.rect.centery = Setting.SCREEN_RECT.centery
         self.screen.blit(self.result_board.text, self.result_board.rect)
 
     @staticmethod
