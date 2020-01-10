@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d695cf2-6e20-45f3-89b0-ec889030d67a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pong_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/pong_game.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -114,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578556840539</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="重新排列砖块位置">
+      <created>1578620820829</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1578620820829</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -173,6 +180,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="改名字" />
     <MESSAGE value="将常量另存到配置文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="将常量另存到配置文件" />
+    <MESSAGE value="重新排列砖块位置" />
+    <option name="LAST_COMMIT_MESSAGE" value="重新排列砖块位置" />
   </component>
 </project>

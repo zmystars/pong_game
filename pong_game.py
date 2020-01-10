@@ -9,12 +9,11 @@ class PongGame(object):
         self.keep_going = True
         self.lives = 3
         self.points = 0
-        self.speed_x = 5
-        self.speed_y = 5
         self.score_board = None
         self.result_board = None
         self.ball = None
         self.draw_string = ""
+        self.flag = True
 
         self.screen = pygame.display.set_mode(Setting.SCREEN_RECT.size)
         pygame.display.set_caption("PongGame")
@@ -38,13 +37,6 @@ class PongGame(object):
                 self.brick.rect.y = j * Setting.BRICK_SIZE[1] + 80 + 2 * j
                 self.brick_group.add(self.brick)
 
-    def __create_a_ball(self):
-        """创建一个球"""
-        self.ball = Ball(self.speed_x, self.speed_y)
-        self.ball.rect.centerx = self.plank.rect.centerx
-        self.ball.rect.bottom = self.plank.rect.top - 10
-        self.ball_group.add(self.ball)
-
     def start_game(self):
         """游戏循环"""
         print("游戏开始...")
@@ -54,7 +46,9 @@ class PongGame(object):
             self.__check_collide()
             self.__update_sprites()
             if self.lives > 0 and len(self.ball_group) == 0:
-                self.__create_a_ball()
+                self.ball = Ball()
+                self.ball_group.add(self.ball)
+                self.flag = True
                 self.lives -= 1
             elif self.lives == 0 and len(self.ball_group) == 0:
                 self.__one_game_finished()
@@ -70,7 +64,14 @@ class PongGame(object):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_F1:
                     self.__init__()
+                if event.key == pygame.K_SPACE and self.ball:
+                    self.ball.x_vel = 5
+                    self.ball.y_vel = 5
+                    self.flag = False
 
+        if self.ball and self.flag:
+            self.ball.rect.centerx = pygame.mouse.get_pos()[0]
+            self.ball.rect.bottom = self.plank.rect.top - 10
         # 使用鼠标控制平板位置
         self.plank.rect.centerx = pygame.mouse.get_pos()[0]
 
@@ -112,7 +113,7 @@ class PongGame(object):
     def __show_score_board(self):
         """绘制记分板"""
         self.points = Setting.BRICK_SCALE[0] * Setting.BRICK_SCALE[1] - len(self.brick_group)
-        self.draw_string = "Points:" + str(self.points) + " Lives:" + str(self.lives)
+        self.draw_string = "Points:" + str(self.points) + " Lives:" + str(self.lives) + " Press [Space] to start."
         self.score_board = Text(self.draw_string)
         self.screen.blit(self.score_board.text, self.score_board.rect)
 
