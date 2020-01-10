@@ -15,7 +15,7 @@ class PongGame(object):
         self.ball = None
         self.draw_string = ""
         self.ball_have_vel = False
-        self.pause = False
+        self.paused = False
 
         self.screen = pygame.display.set_mode(Setting.SCREEN_RECT.size)
         pygame.display.set_caption("PongGame")
@@ -50,7 +50,7 @@ class PongGame(object):
             self.__show_tips()
             pygame.display.update()
 
-            if self.pause is False:
+            if self.paused is False:
                 self.__update_sprites()
                 if self.lives > 0 and len(self.ball_group) == 0:
                     self.ball = Ball()
@@ -66,11 +66,11 @@ class PongGame(object):
             if event.type == pygame.QUIT:
                 PongGame.game_over()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_F1:
+                if event.key == pygame.K_F1 and self.lives == 0 and len(self.ball_group) == 0:
                     self.__init__()
                 if event.key == pygame.K_F2:
-                    self.pause = not self.pause
-                if event.key == pygame.K_SPACE and self.ball:
+                    self.paused = not self.paused
+                if event.key == pygame.K_SPACE and self.ball and self.ball_have_vel is False:
                     self.ball.x_vel += 5
                     self.ball.y_vel += 5
                     self.ball_have_vel = True
@@ -127,9 +127,9 @@ class PongGame(object):
         """显示提示信息"""
         if self.ball_have_vel is False:
             self.draw_string = "Press [Space] to start."
-        elif self.ball_have_vel is True and self.pause is False:
+        elif self.ball_have_vel is True and self.paused is False:
             self.draw_string = "Press [F2] to pause."
-        elif self.ball_have_vel is True and self.pause is True:
+        elif self.ball_have_vel is True and self.paused is True:
             self.draw_string = "Press [F2] to resume."
         self.tips_board = Text(self.draw_string)
         self.tips_board.rect.y = 34

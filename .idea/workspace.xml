@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d695cf2-6e20-45f3-89b0-ec889030d67a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pong_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/pong_game.py" afterDir="false" />
     </list>
@@ -137,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578623998996</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="修改暂停提示">
+      <created>1578685007959</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1578685007959</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -198,6 +204,7 @@
     <MESSAGE value="将常量另存到配置文件" />
     <MESSAGE value="重新排列砖块位置" />
     <MESSAGE value="修改小球激发方式" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改小球激发方式" />
+    <MESSAGE value="修改暂停提示" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改暂停提示" />
   </component>
 </project>
