@@ -34,8 +34,8 @@ class PongGame(object):
         for i in range(Setting.BRICK_SCALE[0]):
             for j in range(Setting.BRICK_SCALE[1]):
                 self.brick = Brick()
-                self.brick.rect.x = i * Setting.BRICK_SIZE[0]
-                self.brick.rect.y = j * Setting.BRICK_SIZE[1]
+                self.brick.rect.x = i * Setting.BRICK_SIZE[0] + 100 + 2 * i
+                self.brick.rect.y = j * Setting.BRICK_SIZE[1] + 80 + 2 * j
                 self.brick_group.add(self.brick)
 
     def __create_a_ball(self):

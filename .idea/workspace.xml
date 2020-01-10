@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d695cf2-6e20-45f3-89b0-ec889030d67a" name="Default Changelist" comment="改名字">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pong_sprites.py" beforeDir="false" afterPath="$PROJECT_DIR$/pong_sprites.py" afterDir="false" />
+    <list default="true" id="6d695cf2-6e20-45f3-89b0-ec889030d67a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pong_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/pong_game.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

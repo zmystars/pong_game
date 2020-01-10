@@ -9,5 +9,5 @@ class Setting(object):
     PLANK_SIZE = (200, 10)
     BALL_SIZE = (50, 50)
     BRICK_SCALE = (10, 10)
-    BRICK_SIZE = (int(SCREEN_RECT.width / BRICK_SCALE[0]), 15)
+    BRICK_SIZE = (int((SCREEN_RECT.width - 200) / BRICK_SCALE[0]), 15)
 
