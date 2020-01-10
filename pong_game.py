@@ -26,7 +26,7 @@ class PongGame(object):
         """初始化创建游戏精灵"""
         self.plank = PlankSprites()
         self.plank_group = pygame.sprite.Group(self.plank)
-        
+
         self.ball_group = pygame.sprite.Group()
 
         self.brick_group = pygame.sprite.Group()
@@ -46,6 +46,9 @@ class PongGame(object):
             self.clock.tick(Setting.FRAME_PER_SEC)
             self.__event_handler()
             self.__check_collide()
+            self.__show_score_board()
+            self.__show_tips()
+            pygame.display.update()
 
             if self.pause is False:
                 self.__update_sprites()
@@ -56,11 +59,6 @@ class PongGame(object):
                     self.lives -= 1
                 elif self.lives == 0 and len(self.ball_group) == 0:
                     self.__one_game_finished()
-                else:
-                    self.__show_score_board()
-                    self.__show_tips()
-
-            pygame.display.update()
 
     def __event_handler(self):
         """事件检测"""
@@ -73,8 +71,8 @@ class PongGame(object):
                 if event.key == pygame.K_F2:
                     self.pause = not self.pause
                 if event.key == pygame.K_SPACE and self.ball:
-                    self.ball.x_vel = 5
-                    self.ball.y_vel = 5
+                    self.ball.x_vel += 5
+                    self.ball.y_vel += 5
                     self.ball_have_vel = True
 
         if self.ball and not self.ball_have_vel:
@@ -111,7 +109,7 @@ class PongGame(object):
 
         self.plank_group.update()
         self.plank_group.draw(self.screen)
-        
+
         self.ball_group.update()
         self.ball_group.draw(self.screen)
 
@@ -131,6 +129,8 @@ class PongGame(object):
             self.draw_string = "Press [Space] to start."
         elif self.ball_have_vel is True and self.pause is False:
             self.draw_string = "Press [F2] to pause."
+        elif self.ball_have_vel is True and self.pause is True:
+            self.draw_string = "Press [F2] to resume."
         self.tips_board = Text(self.draw_string)
         self.tips_board.rect.y = 34
         self.screen.blit(self.tips_board.text, self.tips_board.rect)
