@@ -25,7 +25,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -121,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578620820829</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="修改小球激发方式">
+      <created>1578623998996</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1578623998996</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -181,6 +188,7 @@
     <MESSAGE value="改名字" />
     <MESSAGE value="将常量另存到配置文件" />
     <MESSAGE value="重新排列砖块位置" />
-    <option name="LAST_COMMIT_MESSAGE" value="重新排列砖块位置" />
+    <MESSAGE value="修改小球激发方式" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改小球激发方式" />
   </component>
 </project>

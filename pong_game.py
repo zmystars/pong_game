@@ -10,10 +10,12 @@ class PongGame(object):
         self.lives = 3
         self.points = 0
         self.score_board = None
+        self.tips_board = None
         self.result_board = None
         self.ball = None
         self.draw_string = ""
-        self.flag = True
+        self.ball_have_vel = False
+        self.pause = False
 
         self.screen = pygame.display.set_mode(Setting.SCREEN_RECT.size)
         pygame.display.set_caption("PongGame")
@@ -44,16 +46,20 @@ class PongGame(object):
             self.clock.tick(Setting.FRAME_PER_SEC)
             self.__event_handler()
             self.__check_collide()
-            self.__update_sprites()
-            if self.lives > 0 and len(self.ball_group) == 0:
-                self.ball = Ball()
-                self.ball_group.add(self.ball)
-                self.flag = True
-                self.lives -= 1
-            elif self.lives == 0 and len(self.ball_group) == 0:
-                self.__one_game_finished()
-            else:
-                self.__show_score_board()
+
+            if self.pause is False:
+                self.__update_sprites()
+                if self.lives > 0 and len(self.ball_group) == 0:
+                    self.ball = Ball()
+                    self.ball_group.add(self.ball)
+                    self.ball_have_vel = False
+                    self.lives -= 1
+                elif self.lives == 0 and len(self.ball_group) == 0:
+                    self.__one_game_finished()
+                else:
+                    self.__show_score_board()
+                    self.__show_tips()
+
             pygame.display.update()
 
     def __event_handler(self):
@@ -64,12 +70,14 @@ class PongGame(object):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_F1:
                     self.__init__()
+                if event.key == pygame.K_F2:
+                    self.pause = not self.pause
                 if event.key == pygame.K_SPACE and self.ball:
                     self.ball.x_vel = 5
                     self.ball.y_vel = 5
-                    self.flag = False
+                    self.ball_have_vel = True
 
-        if self.ball and self.flag:
+        if self.ball and not self.ball_have_vel:
             self.ball.rect.centerx = pygame.mouse.get_pos()[0]
             self.ball.rect.bottom = self.plank.rect.top - 10
         # 使用鼠标控制平板位置
@@ -113,9 +121,19 @@ class PongGame(object):
     def __show_score_board(self):
         """绘制记分板"""
         self.points = Setting.BRICK_SCALE[0] * Setting.BRICK_SCALE[1] - len(self.brick_group)
-        self.draw_string = "Points:" + str(self.points) + " Lives:" + str(self.lives) + " Press [Space] to start."
+        self.draw_string = "Points:" + str(self.points) + " Lives:" + str(self.lives)
         self.score_board = Text(self.draw_string)
         self.screen.blit(self.score_board.text, self.score_board.rect)
+
+    def __show_tips(self):
+        """显示提示信息"""
+        if self.ball_have_vel is False:
+            self.draw_string = "Press [Space] to start."
+        elif self.ball_have_vel is True and self.pause is False:
+            self.draw_string = "Press [F2] to pause."
+        self.tips_board = Text(self.draw_string)
+        self.tips_board.rect.y = 34
+        self.screen.blit(self.tips_board.text, self.tips_board.rect)
 
     def __one_game_finished(self):
         """一局游戏结束，显示得分"""
